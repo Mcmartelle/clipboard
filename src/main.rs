@@ -1,18 +1,25 @@
 use atty::Stream;
-use copypasta::{ClipboardContext, ClipboardProvider};
+use arboard::Clipboard;
+// use copypasta::{ClipboardContext, ClipboardProvider};
 use std::env::args;
 use std::fs;
 use std::io::{stdin, Read};
 use std::path::PathBuf;
 
 fn write<T: AsRef<str>>(content: T) {
-    let mut ctx: ClipboardContext = ClipboardContext::new().unwrap();
-    ctx.set_contents(content.as_ref().to_owned()).unwrap();
+    let mut clipboard = Clipboard::new().unwrap();
+    clipboard.set_text(content.as_ref().to_owned()).unwrap();
+    
+    // let mut ctx: ClipboardContext = ClipboardContext::new().unwrap();
+    // ctx.set_contents(content.as_ref().to_owned()).unwrap();
 }
 
 fn print() {
-    let mut ctx: ClipboardContext = ClipboardContext::new().unwrap();
-    println!("{}", ctx.get_contents().unwrap());
+    let mut clipboard = Clipboard::new().unwrap();
+    println!("{}", clipboard.get_text().unwrap());
+
+    // let mut ctx: ClipboardContext = ClipboardContext::new().unwrap();
+    // println!("{}", ctx.get_contents().unwrap());
 }
 
 fn main() {

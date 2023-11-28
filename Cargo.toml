@@ -16,5 +16,5 @@ name = "cb"
 path = "src/main.rs"
 
 [dependencies]
+arboard = "3.3.0"
 atty = "0.2"
-copypasta = "0.7.1"
